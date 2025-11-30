@@ -1,0 +1,257 @@
+<!doctype ENTER>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WattMine — Landing (clone)</title>
+  <meta name="description" content="Simple responsive landing page inspired by WattMineAgenciess" />
+  <!-- Tailwind CDN for quick prototyping -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased text-gray-800 bg-white">
+  <!-- NAV -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full bg-amber-400 flex items-center justify-center font-bold text-white">W</div>
+        <span class="font-semibold text-lg">WattMine</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#home" class="hover:text-amber-600">Home</a>
+        <a href="#about" class="hover:text-amber-600">About</a>
+        <a href="#services" class="hover:text-amber-600">Services</a>
+        <a href="#contact" class="hover:text-amber-600">Contact</a>
+        <a href="#get-started" class="bg-amber-500 text-white px-4 py-2 rounded-md shadow">GET STARTED</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden px-6 pb-6">
+      <a href="#home" class="block py-2">Home</a>
+      <a href="#about" class="block py-2">About</a>
+      <a href="#services" class="block py-2">Services</a>
+      <a href="#contact" class="block py-2">Contact</a>
+      <a href="#get-started" class="block py-2 mt-2 bg-amber-500 text-white text-center py-2 rounded">GET STARTED</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="max-w-6xl mx-auto px-6 py-24">
+    <div class="relative overflow-hidden rounded-3xl p-16 text-center text-white bg-gradient-to-r from-amber-500 via-pink-500 to-purple-600 shadow-2xl animate-gradient">
+      <!-- Glowing animated background overlay -->
+      <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,white,transparent_70%)] animate-pulse"></div>
+
+      <!-- Logo -->
+      <div class="relative z-10 flex justify-center mb-6">
+        <div class="h-20 w-20 rounded-full bg-white flex items-center justify-center shadow-xl">
+          <span class="text-4xl font-extrabold text-amber-600">W</span>
+        </div>
+      </div>
+
+      <!-- Animated Heading -->
+      <h1 class="relative z-10 text-5xl font-extrabold leading-tight animate-fadein">Welcome to WattMine ⚡</h1>
+
+      <!-- Tagline -->
+      <p class="relative z-10 mt-4 text-xl opacity-90 animate-slideup">Where Power Meets Innovation.</p>
+
+      <!-- Typing effect -->
+      <p class="relative z-10 mt-4 text-lg font-medium h-6"><span id="typingText"></span></p>
+
+      <!-- Call to action -->
+      <a href="#services" class="relative z-10 inline-block mt-8 bg-white text-gray-900 font-semibold px-10 py-4 rounded-xl shadow-lg hover:shadow-2xl transition">Explore Our Services</a>
+    </div>
+
+    <style>
+      /* Gradient movement */
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+      }
+      .animate-gradient {
+        background-size: 300% 300%;
+        animation: gradientShift 8s ease infinite alternate;
+      }
+
+      /* Fade in */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fadein {
+        animation: fadeIn 1.5s ease forwards;
+      }
+
+      /* Slide up */
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-slideup {
+        animation: slideUp 2s ease forwards;
+      }
+    </style>
+
+    <script>
+      // Typing Effect
+      const words = ["Powering Businesses...", "Boosting Your Digital Presence...", "Delivering Smart Tech Solutions..."];
+      let i = 0, j = 0, isDeleting = false;
+      const speed = 120;
+      const typingText = document.getElementById("typingText");
+
+      function typeLoop() {
+        let current = words[i];
+        if (!isDeleting) {
+          typingText.textContent = current.slice(0, j++);
+          if (j > current.length) {
+            isDeleting = true;
+            setTimeout(typeLoop, 1000);
+            return;
+          }
+        } else {
+          typingText.textContent = current.slice(0, j--);
+          if (j < 0) {
+            isDeleting = false;
+            i = (i + 1) % words.length;
+          }
+        }
+        setTimeout(typeLoop, speed);
+      }
+      typeLoop();
+    </script>
+
+    <!-- ACTIVATION FEE NOTICE -->
+    <div class="mt-12 p-6 bg-red-50 border border-red-200 text-center rounded-2xl shadow relative">
+      <h2 class="text-xl font-bold text-red-600">Activation Fee Required</h2>
+      <p class="mt-2 text-red-700 text-sm md:text-base">
+        To access WattMine services, please pay a one-time activation fee of <strong>KES 100</strong>.
+      </p>
+      <p class="mt-2 text-red-700 font-semibold">Pay to: <span class="text-red-900">0791347244</span></p>
+
+      <!-- Phone Input -->
+      <div class="mt-4 max-w-md mx-auto">
+        <input id="payerNumber" type="tel" placeholder="Enter your M-Pesa number" class="w-full p-3 border rounded-lg" />
+        <button onclick="processPayment()" class="mt-3 w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700">Proceed to Pay</button>
+      </div>
+
+      <!-- Payment Message -->
+      <p id="paymentStatus" class="mt-3 text-sm font-medium"></p>
+    </div>
+
+    <script>
+      function processPayment() {
+        const number = document.getElementById('payerNumber').value.trim();
+        const status = document.getElementById('paymentStatus');
+
+        if (number === "") {
+          status.textContent = "Please enter a valid phone number.";
+          status.className = "mt-3 text-red-600 text-sm font-medium";
+          return;
+        }
+
+        status.textContent = "Processing payment request for " + number + "...";
+        status.className = "mt-3 text-green-700 text-sm font-medium";
+
+        // DEMO ONLY — Replace with real API or STK push integration
+        setTimeout(() => {
+          status.textContent = "Payment request sent! Check your phone to complete the KES 100 activation.";
+        }, 1500);
+      }
+    </script>
+
+    <!-- SERVICES TEASER -->
+    <section id="services" class="mt-16">
+      <h2 class="text-2xl font-semibold">Our Services</h2>
+      <p class="text-gray-600 mt-2">We offer Bulk SMS, Bulk Email, Web Development and more.</p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <article class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Bulk SMS</h3>
+          <p class="mt-2 text-sm text-gray-600">Send targeted text messages to large audiences with our reliable gateway and free API integration.</p>
+        </article>
+        <article class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Bulk Email</h3>
+          <p class="mt-2 text-sm text-gray-600">Create professional campaigns, track opens and clicks, and automate mail flows.</p>
+        </article>
+        <article class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Web Development</h3>
+          <p class="mt-2 text-sm text-gray-600">Custom websites and web apps that look great and perform well.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="mt-16 bg-gray-50 p-8 rounded-lg">
+      <h3 class="text-xl font-semibold">How it works - 3 easy steps</h3>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="p-4">
+          <div class="text-amber-600 font-bold text-lg">01</div>
+          <h4 class="font-semibold mt-2">Create account</h4>
+          <p class="text-sm text-gray-600 mt-1">Sign up free for App account. One account for all devices.</p>
+        </div>
+        <div class="p-4">
+          <div class="text-amber-600 font-bold text-lg">02</div>
+          <h4 class="font-semibold mt-2">Select service</h4>
+          <p class="text-sm text-gray-600 mt-1">Choose the service category that fits your needs.</p>
+        </div>
+        <div class="p-4">
+          <div class="text-amber-600 font-bold text-lg">03</div>
+          <h4 class="font-semibold mt-2">Start</h4>
+          <p class="text-sm text-gray-600 mt-1">Deploy campaigns or publish your site — we handle the rest.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mt-16" id="about">
+      <h3 class="text-2xl font-semibold">FAQ - Frequently Asked Questions</h3>
+      <div class="mt-4 space-y-4">
+        <details class="p-4 border rounded"><summary class="font-medium">What software development services do you offer?</summary><p class="mt-2 text-sm text-gray-600">Web, mobile, cloud consulting, DevOps, UI/UX and more.</p></details>
+        <details class="p-4 border rounded"><summary class="font-medium">What is the rate of your bulk SMS?</summary><p class="mt-2 text-sm text-gray-600">Flat rate of 0.2 KSH per SMS with free API integration.</p></details>
+        <details class="p-4 border rounded"><summary class="font-medium">What is the process to get a domain?</summary><p class="mt-2 text-sm text-gray-600">We can help register a domain or guide you to registrars like GoDaddy or Namecheap.</p></details>
+      </div>
+    </section>
+
+    <!-- CONTACT & FOOTER -->
+    <section class="mt-16 grid md:grid-cols-2 gap-6 items-start" id="contact">
+      <div>
+        <h4 class="text-xl font-semibold">Contact</h4>
+        <p class="text-gray-600 mt-2">Email: info@wattmine.com<br/>Phone: +254791347244</p>
+        <div class="mt-6">
+          <h5 class="font-medium">Useful Links</h5>
+          <ul class="mt-2 text-sm text-gray-600">
+            <li>About us</li>
+            <li>Services</li>
+            <li>Contact us</li>
+          </ul>
+        </div>
+      </div>
+      <form class="p-6 border rounded-lg" id="contactForm">
+        <label class="block mb-2 text-sm">Your name</label>
+        <input class="w-full p-3 border rounded mb-3" placeholder="Jane Doe" />
+        <label class="block mb-2 text-sm">Email</label>
+        <input class="w-full p-3 border rounded mb-3" placeholder="you@mail.com" />
+        <label class="block mb-2 text-sm">Message</label>
+        <textarea class="w-full p-3 border rounded mb-3" rows="4" placeholder="Tell us about your project"></textarea>
+        <button class="bg-amber-500 text-white px-4 py-2 rounded">Send Message</button>
+      </form>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-gray-500">© Copyrights 2024. All rights reserved.</footer>
+
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const mobile = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => mobile.classList.toggle('hidden'));
+
+    // Simple contact form handler (demo)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thanks — this is a demo contact form. Replace with your backend endpoint.');
+    });
+  </script>
+</body>
+</html>
